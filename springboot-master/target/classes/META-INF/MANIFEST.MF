@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: springboot
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Usuario
+Implementation-Vendor-Id: curso.springboot
+Build-Jdk: 1.8.0_212-3-redhat
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/springboot
+Created-By: Maven Integration for Eclipse
+

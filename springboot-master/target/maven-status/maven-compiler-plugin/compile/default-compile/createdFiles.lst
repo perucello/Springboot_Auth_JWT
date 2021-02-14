@@ -1,0 +1,15 @@
+curso\springboot\model\Usuario.class
+curso\springboot\model\Telefone.class
+curso\springboot\controller\PessoaController.class
+curso\springboot\repository\PessoaRepository.class
+curso\springboot\springboot\IndexController.class
+curso\springboot\security\TokenAuthenticationService.class
+curso\springboot\repository\UsuarioRepository.class
+curso\springboot\security\ImplementacaoUserDetailsService.class
+curso\springboot\repository\TelefoneRepository.class
+curso\springboot\model\Role.class
+curso\springboot\security\WebConfigSecurity.class
+curso\springboot\security\JWTAuthenticationFilter.class
+curso\springboot\security\JWTLoginFilter.class
+curso\springboot\springboot\SpringbootApplication.class
+curso\springboot\model\Pessoa.class

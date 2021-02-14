@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+
+<style type="text/css">
+table.striped>tbody>tr:nth-child(odd) {
+	background-color: rgba(158, 154, 154, 0.5);
+}
+
+form input[type=submit] {
+ color: white;
+}
+</style>
+</head>
+<body>
+<h3>Spring Boot + Thymeleaf + Material Design Lite</h3><br/>
+<h5>Cadastro de Pessoas</h5>
+<div class="row">
+
+<br/>
+    <div th:each = "m : ${msg}">
+        <span th:text = "${m}"> </span>
+    </div>
+<br/>
+
+
+<form action="salvarpessoa" id="formpessoa" method="post" th:object="${pessoaobj}" class="col s12">
+
+			<div class="row">
+				<div class="input-fiel col s6">
+					<label for="id" class="active">ID</label> 
+					    <input name="id" th:field="*{id}" id="id"
+						readonly="readonly">
+				</div>
+				<div class="input-fiel col s6">
+					<label for="nome" class="active">Nome</label> 
+					<input name="nome" th:field="*{nome}" id="nome" class="validate" type="text">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12">
+					<label for="sobrenome" class="active">Sobrenome</label> 
+					<input name="sobrenome" class="validate"
+						th:field="*{sobrenome}" id="sobrenome">
+				</div>
+			</div>
+			
+			<div class="row" sec:authorize="hasAnyRole('ROLE_CAIXA')">
+				<div class="input-field col s12">
+					<label for="idade" class="active">Idade</label> 
+					<input name="idade" th:field="*{idade}" id="idade" class="validate">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s6">
+					<input class="waves-effect waves-light btn" type="submit"
+						value="Salvar">
+						
+					<button class="waves-effect waves-light btn" onclick="document.getElementById('formpessoa').reset();">Novo</button>	
+						
+				</div>
+			</div>
+		</form>
+ </div>
+<br/>
+<br/>
+
+	<div class="row">
+		<form action="pesquisarpessoa" method="post" class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<label for="nomepesquisa" class="active">Pesquia por nome:</label>
+					<input name="nomepesquisa" id="nomepesquisa" class="validate">
+					<input class="waves-effect waves-light btn" type="submit"
+						value="Buscar">
+					<a class="waves-effect waves-light btn" href="/listapessoas">Lista Pessoas</a>	
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<br/>
+<br/>
+ <table class="striped">
+  <thead>
+    <tr>
+     <th>ID</th>
+     <th>Nome</th>
+     <th>Sobrenome</th>
+     <th>Idade</th>
+     <th>Editar</th>
+     <th>Excluir</th>
+    </tr>
+  </thead>
+  <tr th:each = "pessoa : ${pessoas}">
+   <td th:text = "${pessoa.id}"></td>
+   <td><a th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}"><span th:text = "${pessoa.nome}"></span></a></td>
+   <td th:text = "${pessoa.sobrenome}"></td>
+   <td th:text = "${pessoa.idade}"></td>
+   <td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a> </td>
+   <td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a> </td>
+  </tr>
+ </table>
+ 
+ <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+ <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>
